@@ -6,14 +6,15 @@ To enable both Wayland and Fractional scaling, after running the script follow t
 
   a. sudo nano /etc/gdm/custom.conf
 
-  b.  [daemon]
-  
+  b. Comment the options shown below  
+
+    [daemon]
       # Uncomment the line below to force the login screen to use Xorg
       #WaylandEnable=false
       #DefaultSession=gnome-xorg.desktop
       
 2) Enable Fractional scaling
 
-  a. sudo gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
+  a. gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 
 3) Restart the computer
