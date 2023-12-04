@@ -1,5 +1,13 @@
 Fedora post-deployment script here
 
+Download the script and make it executable:
+
+chmod a+x fedora_csb_deploy_rh.sh
+
+Once completed, run it as Super User
+
+sudo ./fedora_csb_deploy_rh.sh
+
 To enable both Wayland and Fractional scaling, after running the script follow these steps:
 
 1) Edit GDM configuration to enble Wayland
