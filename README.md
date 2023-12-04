@@ -1,4 +1,4 @@
-Fedora post-deployment script here
+This script will installl VSCode, Wireshark, Evolution mail and a few extra utilities needed to work.
 
 Download the script and make it executable:
 
@@ -10,7 +10,7 @@ sudo ./fedora_csb_deploy_rh.sh
 
 To enable both Wayland and Fractional scaling, after running the script follow these steps:
 
-1) Edit GDM configuration to enble Wayland
+1) Edit GDM configuration to enable Wayland
 
   a. sudo nano /etc/gdm/custom.conf
 
