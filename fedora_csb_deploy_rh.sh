@@ -15,7 +15,7 @@ add_repositories() {
   rpm --import https://packages.microsoft.com/keys/microsoft.asc
   sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
   echo "Adding Slack repository..."
-  dnf copr enable jdoss/slack-repo
+  dnf copr enable -y jdoss/slack-repo
 }
 
 # Function to install Flatpak apps from FlatHub
@@ -24,7 +24,7 @@ install_flatpak_apps() {
   case "$choice" in
     [Yy]*)
       echo "Installing Flatpak apps..."
-      flatpak install flathub -y com.bitwarden.desktop com.spotify.Client
+      flatpak install flathub -y com.bitwarden.desktop com.spotify.Client md.obsidian.Obsidian
       echo "Applying automatic theme selection for Flatpak apps"
       flatpak override --filesystem=xdg-config/gtk-3.0:ro
       ;;
@@ -54,7 +54,7 @@ echo "Updating package repository and installing initial packages..."
 dnf update -y
 dnf install -y https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm https://zoom.us/client/5.16.2.8828/zoom_x86_64.rpm
 dnf update -y
-dnf install --best --allowerasing -y arj cabextract code @development-tools dnf-utils dpkg evolution file-roller fprintd-devel gimp gimp-data-extras gimp-*-plugin gimp-elsamuko gimp-*-filter gimp-help gimp-help-es gimp-layer* gimp-lensfun gimp-*-masks gimp-resynthesizer gimp-save-for-web gimp-separate+ gimp-*-studio gimp-wavelet* gimpfx-foundry gitg gnome-screenshot htop hunspell-es info innoextract lha libcurl-devel libreoffice-langpack-es libreoffice-help-es libfprint-devel libxml2-devel lzma mozilla-ublock-origin neofetch nodejs-bash-language-server perl pstoedit pycharm-community pycharm-community-doc pycharm-community-plugins redhat-lsb-core slack unace unrar wireshark xkill
+dnf install --best --allowerasing -y arj cabextract code @development-tools dnf-utils dpkg evolution file-roller fprintd-devel gimp gimp-data-extras gimp-*-plugin gimp-elsamuko gimp-*-filter gimp-help gimp-help-es gimp-layer* gimp-lensfun gimp-*-masks gimp-resynthesizer gimp-save-for-web gimp-separate+ gimp-*-studio gimp-wavelet* gimpfx-foundry gitg gnome-screenshot go hexchat htop hunspell-es info innoextract lha libcurl-devel libreoffice-langpack-es libreoffice-help-es libfprint-devel libxml2-devel lzma mozilla-ublock-origin neofetch nodejs-bash-language-server perl pstoedit pycharm-community pycharm-community-doc pycharm-community-plugins redhat-lsb-core slack unace unrar wireshark xkill
 
 # Check if the initial installation was successful
 if [ $? -eq 0 ]; then
