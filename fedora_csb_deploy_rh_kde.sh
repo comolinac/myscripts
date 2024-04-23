@@ -21,7 +21,7 @@ add_repositories() {
 
 # Function to install Flatpak apps from FlatHub
 install_flatpak_apps() {
-  read -p "Do you want to install Flatpak apps? (Y/N): " choice
+  read -p "Do you want to install Flatpak apps? These include Bitwarden, Obsidian and Spotify. (Y/N): " choice
   case "$choice" in
     [Yy]*)
       echo "Installing Flatpak apps..."
@@ -51,7 +51,7 @@ dnf install --nogpgcheck -y slack-repo
 # Initial installation
 echo "Updating package repository and installing initial packages..."
 dnf update -y
-dnf install -y https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm https://zoom.us/client/5.16.2.8828/zoom_x86_64.rpm
+dnf install -y https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm https://zoom.us/client/5.17.11.3835/zoom_x86_64.rpm
 dnf update -y
 dnf group install --best --allowerasing -y "KDE Plasma Workspaces" "KDE (K Desktop Environment)"
 systemctl disable gdm
