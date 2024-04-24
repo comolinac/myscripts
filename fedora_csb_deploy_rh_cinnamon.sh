@@ -11,9 +11,10 @@ add_repositories() {
   echo "Adding repositories..."
   echo "Installing RPMFusion..."
   dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-  echo "Adding Microsoft repository..."
+  echo "Adding Microsoft repositories..."
   rpm --import https://packages.microsoft.com/keys/microsoft.asc
   sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+  dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
   echo "Adding Slack repository..."
   rpm --import https://slack.com/gpg/slack_pubkey_20230710.gpg
   dnf copr enable -y jdoss/slack-repo
@@ -25,7 +26,7 @@ install_flatpak_apps() {
   case "$choice" in
     [Yy]*)
       echo "Installing Flatpak apps..."
-      flatpak install flathub -y com.bitwarden.desktop com.spotify.Client md.obsidian.Obsidian
+      flatpak install flathub -y org.gtk.Gtk3theme.Mint-Y org.gtk.Gtk3theme.Mint-Y-Aqua org.gtk.Gtk3theme.Mint-Y-Blue org.gtk.Gtk3theme.Mint-Y-Brown org.gtk.Gtk3theme.Mint-Y-Dark org.gtk.Gtk3theme.Mint-Y-Darker org.gtk.Gtk3theme.Mint-Y-Dark-Aqua org.gtk.Gtk3theme.Mint-Y-Darker-Aqua org.gtk.Gtk3theme.Mint-Y-Dark-Blue org.gtk.Gtk3theme.Mint-Y-Darker-Blue org.gtk.Gtk3theme.Mint-Y-Dark-Brown org.gtk.Gtk3theme.Mint-Y-Darker-Brown org.gtk.Gtk3theme.Mint-Y-Dark-Grey org.gtk.Gtk3theme.Mint-Y-Darker-Grey org.gtk.Gtk3theme.Mint-Y-Dark-Orange org.gtk.Gtk3theme.Mint-Y-Darker-Orange org.gtk.Gtk3theme.Mint-Y-Dark-Pink org.gtk.Gtk3theme.Mint-Y-Darker-Pink org.gtk.Gtk3theme.Mint-Y-Dark-Purple org.gtk.Gtk3theme.Mint-Y-Darker-Purple org.gtk.Gtk3theme.Mint-Y-Dark-Red org.gtk.Gtk3theme.Mint-Y-Darker-Red org.gtk.Gtk3theme.Mint-Y-Dark-Sand org.gtk.Gtk3theme.Mint-Y-Darker-Sand org.gtk.Gtk3theme.Mint-Y-Dark-Teal org.gtk.Gtk3theme.Mint-Y-Darker-Teal org.gtk.Gtk3theme.Mint-Y-Grey org.gtk.Gtk3theme.Mint-Y-Orange org.gtk.Gtk3theme.Mint-Y-Pink org.gtk.Gtk3theme.Mint-Y-Purple org.gtk.Gtk3theme.Mint-Y-Red org.gtk.Gtk3theme.Mint-Y-Sand org.gtk.Gtk3theme.Mint-Y-Teal com.bitwarden.desktop com.spotify.Client md.obsidian.Obsidian 
       echo "Applying automatic theme selection for Flatpak apps"
       flatpak override --filesystem=xdg-config/gtk-3.0:ro
       ;;
@@ -51,12 +52,12 @@ dnf install --nogpgcheck -y slack-repo
 # Initial installation
 echo "Updating package repository and installing initial packages..."
 dnf update -y
-dnf install -y https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm https://zoom.us/client/5.17.11.3835/zoom_x86_64.rpm
+dnf install -y https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm https://zoom.us/client/latest/zoom_x86_64.rpm
 dnf update -y
-dnf group install --best --allowerasing -y "KDE Plasma Workspaces" "KDE (K Desktop Environment)"
+dnf group install --best --allowerasing -y cinnamon-desktop-environment development-tools virtualization
 systemctl disable gdm
-systemctl enable sddm
-dnf install --best --allowerasing -y arj cabextract code @development-tools dnf-utils dpkg dragon elisa-player fprintd-devel gimp gimp-data-extras gimp-*-plugin gimp-elsamuko gimp-*-filter gimp-help gimp-help-es gimp-layer* gimp-lensfun gimp-*-masks gimp-resynthesizer gimp-save-for-web gimp-separate+ gimp-*-studio gimp-wavelet* gimpfx-foundry gwenview go htop hunspell-es info innoextract kamoso kate kcalc kdiskmark kget kommit konversation ksystemlog lha libcurl-devel libfprint-devel libreoffice-draw libreoffice-langpack-es libreoffice-help-es libxml2-devel lzma mozilla-ublock-origin neofetch nodejs-bash-language-server okular perl pstoedit pycharm-community pycharm-community-doc pycharm-community-plugins redhat-lsb-core slack thunderbird unace unrar wireshark xkill
+systemctl enable lightdm
+dnf install --best --allowerasing -y arj cabextract code dnf-utils dpkg fprintd-devel gimp gimp-data-extras gimp-*-plugin gimp-elsamuko gimp-*-filter gimp-help gimp-help-es gimp-layer* gimp-lensfun gimp-*-masks gimp-resynthesizer gimp-save-for-web gimp-separate+ gimp-*-studio gimp-wavelet* gimpfx-foundry gitg go htop hunspell-es info innoextract lha libcurl-devel libfprint-devel libreoffice-draw libreoffice-langpack-es libreoffice-help-es libxml2-devel lzma mozilla-ublock-origin neofetch nodejs-bash-language-server okular perl pstoedit pycharm-community pycharm-community-doc pycharm-community-plugins redhat-lsb-core slack uget unace unrar wireshark xkill
 
 # Check if the initial installation was successful
 if [ $? -eq 0 ]; then
