@@ -57,7 +57,7 @@ dnf update -y
 dnf group install --best --allowerasing -y cinnamon-desktop-environment development-tools virtualization
 systemctl disable gdm
 systemctl enable lightdm
-dnf install --best --allowerasing -y arj awesome-vim-colorschemes azure-cli cabextract code dnf-utils dpkg fprintd-devel gimp gimp-data-extras gimp-*-plugin gimp-elsamuko gimp-*-filter gimp-help gimp-help-es gimp-layer* gimp-lensfun gimp-*-masks gimp-resynthesizer gimp-save-for-web gimp-separate+ gimp-*-studio gimp-wavelet* gimpfx-foundry gitg go htop hunspell-es info innoextract lha libcurl-devel libfprint-devel libreoffice-draw libreoffice-langpack-es libreoffice-help-es libxml2-devel lzma mozilla-ublock-origin neofetch nodejs-bash-language-server perl pstoedit pycharm-community pycharm-community-doc pycharm-community-plugins redhat-lsb-core slack uget unace unrar vlc vim-enhanced wireshark xkill
+dnf install --best --allowerasing -y arj awesome-vim-colorschemes azure-cli cabextract code dnf-utils dpkg fprintd-devel gimp gimp-data-extras gimp-*-plugin gimp-elsamuko gimp-*-filter gimp-help gimp-help-es gimp-layer* gimp-lensfun gimp-*-masks gimp-resynthesizer gimp-save-for-web gimp-separate+ gimp-*-studio gimp-wavelet* gimpfx-foundry gitg go htop hunspell-es info innoextract kubernetes-client lha libcurl-devel libfprint-devel libreoffice-draw libreoffice-langpack-es libreoffice-help-es libxml2-devel lzma mozilla-ublock-origin neofetch nodejs-bash-language-server perl pstoedit pycharm-community pycharm-community-doc pycharm-community-plugins redhat-lsb-core slack uget unace unrar vlc vim-enhanced wireshark xkill
 dnf remove -y mpv pidgin shotwell simple-scan transmission xfburn
 
 # Check if the initial installation was successful
