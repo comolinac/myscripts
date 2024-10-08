@@ -25,7 +25,7 @@ install_flatpak_apps() {
   case "$choice" in
     [Yy]*)
       echo "Installing Flatpak apps..."
-      flatpak install flathub -y com.bitwarden.desktop com.spotify.Client md.obsidian.Obsidian
+      flatpak install flathub -y com.bitwarden.desktop md.obsidian.Obsidian io.podman_desktop.PodmanDesktop com.spotify.Client
       echo "Applying automatic theme selection for Flatpak apps"
       flatpak override --filesystem=xdg-config/gtk-3.0:ro
       ;;
